@@ -67,12 +67,42 @@ class App extends Component {
       {
         value:'/test1',
         label: 'test1',
+        visible: false,
         icon: <ActionHome />
       },
       {
         value:'/test2',
         label: 'test2',
         icon: <ActionHome />
+      },
+      {
+        value:'/test3',
+        label: 'test3',
+        icon: <ActionHome />,
+        nested:[
+          {
+            value:'/test4',
+            label: 'test4',
+            icon: <ActionHome />
+          },
+          {
+            value:'/test5',
+            label: 'test5',
+            icon: <ActionHome />,
+            nested:[
+              {
+                value:'/test6',
+                label: 'test6',
+                icon: <ActionHome />
+              },
+              {
+                value:'/test7',
+                label: 'test7',
+                icon: <ActionHome />,
+              }
+            ]
+          },
+        ]
       },
     ];
 
