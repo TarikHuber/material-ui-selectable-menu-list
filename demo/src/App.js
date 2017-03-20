@@ -5,6 +5,7 @@ import {
   BodyContainer,
   toggleDrawerOpen,
   toggleDrawerDock,
+  setDrawerOpen,
   setResponsive
 } from 'material-ui-responsive-drawer';
 import {  push } from 'react-router-redux';
@@ -149,6 +150,7 @@ App.propTypes = {
   toggleDrawerOpen: PropTypes.func.isRequired,
   toggleDrawerDock: PropTypes.func.isRequired,
   setResponsive: PropTypes.func.isRequired,
+  setResponsive: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -170,6 +172,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setResponsive: (isResponsive) => {
       dispatch(setResponsive(isResponsive));
+    },
+    setDrawerOpen: (isOpen) => {
+      dispatch(setDrawerOpen(isOpen));
     },
     to: (path)=>{
       dispatch(push(path))
