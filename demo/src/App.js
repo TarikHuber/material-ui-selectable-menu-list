@@ -18,6 +18,19 @@ import SvgIcon from 'material-ui/SvgIcon';
 import IconButton from 'material-ui/IconButton';
 import {SelectableMenuList} from '../../src/index.js';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import Avatar from 'material-ui/Avatar';
+import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import {pinkA200, transparent, blue500, yellow600} from 'material-ui/styles/colors';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import ActionAssignment from 'material-ui/svg-icons/action/assignment';
+import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import MobileTearSheet from './MobileTearSheet';
+import {simple_list} from './lists.js'
 
 const styles={
   drawer_container:{
@@ -52,7 +65,7 @@ class App extends Component {
       setDrawerOpen(false);
     }
 
-    if(index!==undefined){
+    if(index!==undefined && index!==Object(index)){
       to(index);
     }
 
@@ -63,47 +76,127 @@ class App extends Component {
 
     const index=this.props.location?this.props.location.pathname:'/';
 
+
+    const chat_list=[
+      {
+        subheader: 'Chat list',
+      },
+      {
+        value:'/tarik_huber',
+        primaryText: 'Tarik Huber',
+        leftAvatar: <Avatar>T</Avatar>,
+        rightIcon: <CommunicationChatBubble />
+      },
+      {
+        value:'/haris_huber',
+        primaryText: 'Haris Huber',
+        leftAvatar: <Avatar>H</Avatar>,
+        rightIcon: <CommunicationChatBubble />
+      },
+    ]
+
+    const contact_list= [
+      {
+        subheader: 'Contact list',
+      },
+      {
+        value:'/elvedin_gabeljic',
+        primaryText: 'Elvedin Gabeljic',
+        rightAvatar: <Avatar>E</Avatar>,
+        leftIcon: <ActionGrade color={pinkA200} />
+      },
+      {
+        value:'/nakib_picar',
+        insetChildren: true,
+        primaryText: 'Nakib Picar',
+        rightAvatar: <Avatar>N</Avatar>,
+      },
+    ]
+
+    const folders_list=[
+      {
+        subheader: 'Folders',
+      },
+      {
+        value:'/photos',
+        primaryText: 'Photos',
+        secondaryText: 'Jan 9, 2014',
+        leftAvatar: <Avatar icon={<FileFolder />} />,
+        rightIcon: <ActionInfo/>
+      },
+      {
+        value:'/recipes',
+        primaryText: 'Recipes',
+        secondaryText: 'Jan 17, 2014',
+        leftAvatar: <Avatar icon={<FileFolder />} />,
+        rightIcon: <ActionInfo/>
+      },
+      {
+        value:'/work',
+        primaryText: 'Work',
+        secondaryText: 'Jan 28, 2014',
+        leftAvatar: <Avatar icon={<FileFolder />} />,
+        rightIcon: <ActionInfo/>
+      },
+      {
+        divider: true,
+      },
+      {
+        subheader: 'Files',
+      },
+      {
+        value:'/vacation_itinerary',
+        primaryText: 'Vacation itinerary',
+        secondaryText: 'Jan 20, 2014',
+        primaryTogglesNestedList: false,
+        leftAvatar: <Avatar icon={<ActionAssignment />} backgroundColor={blue500} />,
+        rightIcon: <ActionInfo/>
+      },
+      {
+        value:'/kitchen_remodel',
+        primaryText: 'Kitchen remodel',
+        secondaryText: 'Jan 10, 2014',
+        leftAvatar: <Avatar icon={<EditorInsertChart />} backgroundColor={yellow600} />,
+        rightIcon: <ActionInfo/>
+      },
+    ]
+
+
     const menuItems=[
+
       {
-        value:'/test1',
-        label: 'test1',
-        visible: false,
-        icon: <ActionHome />
+        subheader: 'Settings',
       },
       {
-        value:'/test2',
-        label: 'test2',
-        icon: <ActionHome />
+        value:'/profile_photo',
+        primaryText: 'Profile photo',
+        secondaryText: 'Change your Google+ profile photo',
       },
       {
-        value:'/test3',
-        label: 'test3',
-        icon: <ActionHome />,
-        nested:[
-          {
-            value:'/test4',
-            label: 'test4',
-            icon: <ActionHome />
-          },
-          {
-            value:'/test5',
-            label: 'test5',
-            icon: <ActionHome />,
-            nested:[
-              {
-                value:'/test6',
-                label: 'test6',
-                icon: <ActionHome />
-              },
-              {
-                value:'/test7',
-                label: 'test7',
-                icon: <ActionHome />,
-              }
-            ]
-          },
-        ]
+        value:'/show_status',
+        primaryText: 'Show your status',
+        secondaryText: 'Your status is visible to everyone you use with',
       },
+      {
+        subheader: 'Drawer settings',
+      },
+      {
+        value:'/set_responsive',
+        primaryText: responsiveDrawer.responsive?"Disable responsive":"Enable responsive",
+        rightToggle: <Toggle
+          toggled={responsiveDrawer.responsive}
+          onToggle={()=>{setResponsive(!responsiveDrawer.responsive)}}
+        />
+      },
+      {
+        value:'/set_docked',
+        primaryText: responsiveDrawer.docked?"Disable docked":"Enable docked",
+        rightToggle: <Toggle
+          toggled={responsiveDrawer.docked}
+          onToggle={toggleDrawerDock}
+        />
+      },
+
     ];
 
     return (
@@ -136,7 +229,7 @@ class App extends Component {
               title={index}
               iconElementRight={
                 <FlatButton
-                  href="https://github.com/TarikHuber/material-ui-responsive-drawer"
+                  href="https://github.com/TarikHuber/material-ui-selectable-menu-list"
                   target="_blank"
                   secondary={true}
                   icon={
@@ -168,6 +261,46 @@ class App extends Component {
                 toggled={responsiveDrawer.docked}
                 onToggle={toggleDrawerDock}
               />
+
+
+              <div style={{marginTop: 15}}>
+
+                <MobileTearSheet>
+                  <SelectableMenuList
+                    items={simple_list}
+                    onIndexChange={this.handleChange}
+                    index={index}
+                  />
+                </MobileTearSheet>
+
+                <MobileTearSheet>
+                  <SelectableMenuList
+                    items={chat_list}
+                    onIndexChange={this.handleChange}
+                    index={index}
+                  />
+                </MobileTearSheet>
+
+                <MobileTearSheet>
+                  <SelectableMenuList
+                    items={contact_list}
+                    onIndexChange={this.handleChange}
+                    index={index}
+                  />
+                </MobileTearSheet>
+
+                <MobileTearSheet>
+                  <SelectableMenuList
+                    items={folders_list}
+                    onIndexChange={this.handleChange}
+                    index={index}
+                  />
+                </MobileTearSheet>
+
+              </div>
+
+
+
             </div>
           </BodyContainer>
         </div>

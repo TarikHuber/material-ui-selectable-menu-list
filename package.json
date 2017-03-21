@@ -1,7 +1,7 @@
 {
   "name": "material-ui-selectable-menu-list",
   "version": "1.0.0",
-  "description": "material-ui-selectable-menu-list React component",
+  "description": "Selectable List from Material-UI that can be filled with an array of items",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -39,10 +39,10 @@
     "redux": "^3.6.0",
     "redux-responsive": "^4.1.1"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Tarik Huber",
+  "homepage": "https://tarikhuber.github.io/material-ui-selectable-menu-list/",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/TarikHuber/material-ui-selectable-menu-list",
   "keywords": [
     "react-component"
   ]
