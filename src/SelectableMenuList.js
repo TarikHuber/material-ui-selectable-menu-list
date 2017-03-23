@@ -21,6 +21,8 @@ function getNestedItems(hostItem, hostIndex){
 
 function getItem(item, i){
 
+	delete item.visible;
+
 	if(item!==undefined){
 		if(item.subheader!==undefined){
 			return <Subheader

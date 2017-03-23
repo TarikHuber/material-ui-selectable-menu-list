@@ -169,11 +169,13 @@ class App extends Component {
       },
       {
         value:'/profile_photo',
+        visible: true,
         primaryText: 'Profile photo',
         secondaryText: 'Change your Google+ profile photo',
       },
       {
         value:'/show_status',
+        visible: false,
         primaryText: 'Show your status',
         secondaryText: 'Your status is visible to everyone you use with',
       },
