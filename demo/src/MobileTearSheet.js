@@ -1,6 +1,7 @@
 //Source: https://github.com/callemall/material-ui/blob/ccf712c5733508784cd709c18c29059542d6aad1/docs/src/app/components/MobileTearSheet.js
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class MobileTearSheet extends Component {
 
