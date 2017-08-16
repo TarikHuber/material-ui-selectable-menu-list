@@ -7,10 +7,9 @@ import routes from './routes'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {responsiveStoreEnhancer} from 'redux-responsive';
 import { createStore, compose, applyMiddleware } from 'redux';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Router, browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
-injectTapEventPlugin();
+
 
 const middlewares=[
   routerMiddleware(browserHistory)
