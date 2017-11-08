@@ -1,26 +1,31 @@
-import {render} from 'react-dom'
-import React  from 'react';
+import { render } from 'react-dom'
+import React from 'react'
 import App from './App.js'
-import { Provider } from 'react-redux';
-import reducers from './reducers';
+import { Provider } from 'react-redux'
+import reducers from './reducers'
 import routes from './routes'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {responsiveStoreEnhancer} from 'redux-responsive';
-import { createStore, compose, applyMiddleware } from 'redux';
-import { Router, browserHistory } from 'react-router';
-import { routerMiddleware } from 'react-router-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { responsiveStoreEnhancer } from 'redux-responsive'
+import { createStore, compose, applyMiddleware } from 'redux'
+import { Router, Route, Switch } from 'react-router'
+import createHistory from 'history/createBrowserHistory'
 
+const history = createHistory()
 
-const middlewares=[
-  routerMiddleware(browserHistory)
-];
-
-const store = createStore(reducers, compose(applyMiddleware(...middlewares), responsiveStoreEnhancer) );
+const store = createStore(reducers, compose(applyMiddleware(), responsiveStoreEnhancer))
 
 render(
   <Provider store={store}>
     <MuiThemeProvider>
-      <Router history={browserHistory} routes={routes} />
+      <App>
+        <Router history={history} >
+          <Switch >
+            <Route path='/test' component={App} />
+            <Route path='/test' component={App} />
+            <Route path='/*' component={App} />
+          </Switch>
+        </Router>
+      </App>
     </MuiThemeProvider>
   </Provider>
   , document.querySelector('#demo'))
