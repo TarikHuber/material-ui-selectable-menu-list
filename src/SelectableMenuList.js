@@ -1,87 +1,80 @@
-import React, {  Component } from 'react';
-import PropTypes from 'prop-types';
-import {List , ListItem} from 'material-ui';
-import {makeSelectable} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
-import Divider from 'material-ui/Divider';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { List, ListItem } from 'material-ui'
+import { makeSelectable } from 'material-ui/List'
+import Subheader from 'material-ui/Subheader'
+import Divider from 'material-ui/Divider'
 
-function getNestedItems(hostItem, hostIndex){
+function getNestedItems (hostItem, hostIndex) {
+  if (hostItem.nestedItems !== undefined) {
+    let items = hostItem.nestedItems.filter(function (item) { return item.visible !== false })
 
-	if(hostItem.nestedItems!==undefined){
-		let items=hostItem.nestedItems.filter(function(item){ return item.visible!==false});
+    if (items.length > 0) {
+      return items.map(function (item, i) {
+        return getItem(item, hostIndex.toString() + i.toString())
+      })
+    }
+  }
 
-		if(items.length>0){
-			return items.map(function(item, i){
-				return getItem(item, hostIndex.toString()+i.toString())
-			});
-		}
-	}
-
-	return undefined;
+  return undefined
 };
 
-function getItem(item, i){
+function getItem (item, i) {
+  delete item.visible
 
-	delete item.visible;
+  if (item !== undefined) {
+    if (item.subheader !== undefined) {
+      return <Subheader
+        key={i}
+        inset={item.inset}
+        style={item.style}>
+        {item.subheader}
+      </Subheader>
+    } else if (item.divider !== undefined) {
+      return <Divider
+        key={i}
+        inset={item.inset}
+        style={item.style}
+      />
+    } else {
+      return <ListItem
+        {...item}
+        key={i}
+        value={item.value}
+        nestedItems={getNestedItems(item, i)}
+      />
+    }
+  }
 
-	if(item!==undefined){
-		if(item.subheader!==undefined){
-			return <Subheader
-				key={i}
-				inset={item.inset}
-				style={item.style}>
-				{item.subheader}
-			</Subheader>
-		}else if(item.divider!==undefined){
-			return <Divider
-				key={i}
-				inset={item.inset}
-				style={item.style}
-			/>
-		}else{
-			return <ListItem
-				{...item}
-				key={i}
-				value={item.value}
-				nestedItems={getNestedItems(item, i)}
-			/>
-		}
-
-	}
-
-	return undefined;
+  return undefined
 }
 
+class SelectableMenuList extends Component {
+  render () {
+    const { items, onIndexChange, index } = this.props
 
-class SelectableMenuList extends Component{
+    const SelectableList = makeSelectable(List)
 
-
-	render(){
-
-		const {  items, onIndexChange, index } = this.props
-
-		const SelectableList = makeSelectable(List);
-
-		return (
-			<SelectableList
-				value={index}
-				onChange={onIndexChange}>
-				{
-					items.filter(function(item){
-						return item.visible!==false;
-					}).map(function(item, i){
-						return getItem(item, i)
-					})
-				}
-			</SelectableList>
-		);
-	}
+    return (
+      <SelectableList
+        value={index}
+        onChange={onIndexChange}>
+        {
+          items.filter(function (item) {
+            return item.visible !== false
+          }).map(function (item, i) {
+            return getItem(item, i)
+          })
+        }
+      </SelectableList>
+    )
+  }
 };
 
 SelectableMenuList.propTypes = {
-	items: PropTypes.array.isRequired,
-	onIndexChange: PropTypes.func.isRequired,
-	index: PropTypes.string.isRequired
+  items: PropTypes.array.isRequired,
+  onIndexChange: PropTypes.func.isRequired,
+  index: PropTypes.string.isRequired
 }
 
-export default (SelectableMenuList);
+export default (SelectableMenuList)

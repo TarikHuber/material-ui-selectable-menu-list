@@ -1,143 +1,143 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  ResponsiveDrawer,
-  ResponsiveAppBar,
-  BodyContainer,
-  toggleDrawerOpen,
-  toggleDrawerDock,
-  setDrawerOpen,
-  setResponsive
-} from 'material-ui-responsive-drawer';
-import {  push } from 'react-router-redux';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
-import {connect} from 'react-redux';
-import FontIcon from 'material-ui/FontIcon';
-import SvgIcon from 'material-ui/SvgIcon';
-import IconButton from 'material-ui/IconButton';
-import {SelectableMenuList} from '../../src/index.js';
-import ActionHome from 'material-ui/svg-icons/action/home';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import Avatar from 'material-ui/Avatar';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
-import {pinkA200, transparent, blue500, yellow600} from 'material-ui/styles/colors';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import ActionAssignment from 'material-ui/svg-icons/action/assignment';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
-import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
 import MobileTearSheet from './MobileTearSheet';
-import {simple_list} from './lists.js'
+import PropTypes from 'prop-types';
+import RaisedButton from 'material-ui/RaisedButton';
+import React, { Component } from 'react';
+import Subheader from 'material-ui/Subheader';
+import SvgIcon from 'material-ui/SvgIcon';
+import Toggle from 'material-ui/Toggle';
+import { List, ListItem } from 'material-ui/List';
+import { SelectableMenuList } from '../../src/index.js';
+import { connect } from 'react-redux';
+import { pinkA200, transparent, blue500, yellow600 } from 'material-ui/styles/colors';
+import { push } from 'react-router-redux';
+import { simple_list } from './lists.js'
+import {
+  BodyContainer,
+  ResponsiveAppBar,
+  ResponsiveDrawer,
+  setDrawerOpen,
+  setResponsive,
+  toggleDrawerDock,
+  toggleDrawerOpen
+} from 'material-ui-responsive-drawer';
 
-const styles={
-  drawer_container:{
+const styles = {
+  drawer_container: {
     //backgroundColor: 'green',
     height: '100%'
   },
-  drawer_header:{
+  drawer_header: {
     backgroundColor: 'cyan',
     margin: '0px',
     paddingBottom: '10px'
   },
-  drawer_header_container:{
+  drawer_header_container: {
     padding: '10px'
   },
-  body_header:{
+  body_header: {
     margin: '0px',
     padding: '10px'
   },
-  responsive_toggler:{
+  responsive_toggler: {
     width: 250,
-    paddingTop:15
+    paddingTop: 15
   }
 }
 
 
 class App extends Component {
 
-  handleChange = (event, index) =>{
-    const {to, responsiveDrawer, setDrawerOpen} = this.props;
+  handleChange = (event, index) => {
+    const { to, responsiveDrawer, setDrawerOpen } = this.props;
 
-    if(responsiveDrawer.open){
+    if (responsiveDrawer.open) {
       setDrawerOpen(false);
     }
 
-    if(index!==undefined && index!==Object(index)){
+    if (index !== undefined && index !== Object(index)) {
       to(index);
     }
 
   }
 
   render() {
-    const { toggleDrawerOpen, browser, responsiveDrawer, toggleDrawerDock, setResponsive} = this.props
+    const { toggleDrawerOpen, browser, responsiveDrawer, toggleDrawerDock, setResponsive } = this.props
 
-    const index=this.props.location?this.props.location.pathname:'/';
+    const index = this.props.location ? this.props.location.pathname : '/';
 
 
-    const chat_list=[
+    const chat_list = [
       {
         subheader: 'Chat list',
       },
       {
-        value:'/tarik_huber',
+        value: '/tarik_huber',
         primaryText: 'Tarik Huber',
         leftAvatar: <Avatar>T</Avatar>,
         rightIcon: <CommunicationChatBubble />
       },
       {
-        value:'/haris_huber',
+        value: '/haris_huber',
         primaryText: 'Haris Huber',
         leftAvatar: <Avatar>H</Avatar>,
         rightIcon: <CommunicationChatBubble />
       },
     ]
 
-    const contact_list= [
+    const contact_list = [
       {
         subheader: 'Contact list',
       },
       {
-        value:'/elvedin_gabeljic',
+        value: '/elvedin_gabeljic',
         primaryText: 'Elvedin Gabeljic',
         rightAvatar: <Avatar>E</Avatar>,
         leftIcon: <ActionGrade color={pinkA200} />
       },
       {
-        value:'/nakib_picar',
+        value: '/nakib_picar',
         insetChildren: true,
         primaryText: 'Nakib Picar',
         rightAvatar: <Avatar>N</Avatar>,
       },
     ]
 
-    const folders_list=[
+    const folders_list = [
       {
         subheader: 'Folders',
       },
       {
-        value:'/photos',
+        value: '/photos',
         primaryText: 'Photos',
         secondaryText: 'Jan 9, 2014',
         leftAvatar: <Avatar icon={<FileFolder />} />,
-        rightIcon: <ActionInfo/>
+        rightIcon: <ActionInfo />
       },
       {
-        value:'/recipes',
+        value: '/recipes',
         primaryText: 'Recipes',
         secondaryText: 'Jan 17, 2014',
         leftAvatar: <Avatar icon={<FileFolder />} />,
-        rightIcon: <ActionInfo/>
+        rightIcon: <ActionInfo />
       },
       {
-        value:'/work',
+        value: '/work',
         primaryText: 'Work',
         secondaryText: 'Jan 28, 2014',
         leftAvatar: <Avatar icon={<FileFolder />} />,
-        rightIcon: <ActionInfo/>
+        rightIcon: <ActionInfo />
       },
       {
         divider: true,
@@ -146,36 +146,36 @@ class App extends Component {
         subheader: 'Files',
       },
       {
-        value:'/vacation_itinerary',
+        value: '/vacation_itinerary',
         primaryText: 'Vacation itinerary',
         secondaryText: 'Jan 20, 2014',
         primaryTogglesNestedList: false,
         leftAvatar: <Avatar icon={<ActionAssignment />} backgroundColor={blue500} />,
-        rightIcon: <ActionInfo/>
+        rightIcon: <ActionInfo />
       },
       {
-        value:'/kitchen_remodel',
+        value: '/kitchen_remodel',
         primaryText: 'Kitchen remodel',
         secondaryText: 'Jan 10, 2014',
         leftAvatar: <Avatar icon={<EditorInsertChart />} backgroundColor={yellow600} />,
-        rightIcon: <ActionInfo/>
+        rightIcon: <ActionInfo />
       },
     ]
 
 
-    const menuItems=[
+    const menuItems = [
 
       {
         subheader: 'Settings',
       },
       {
-        value:'/profile_photo',
+        value: '/profile_photo',
         visible: true,
         primaryText: 'Profile photo',
         secondaryText: 'Change your Google+ profile photo',
       },
       {
-        value:'/show_status',
+        value: '/show_status',
         visible: false,
         primaryText: 'Show your status',
         secondaryText: 'Your status is visible to everyone you use with',
@@ -184,16 +184,16 @@ class App extends Component {
         subheader: 'Drawer settings',
       },
       {
-        value:'/set_responsive',
-        primaryText: responsiveDrawer.responsive?"Disable responsive":"Enable responsive",
+        value: '/set_responsive',
+        primaryText: responsiveDrawer.responsive ? "Disable responsive" : "Enable responsive",
         rightToggle: <Toggle
           toggled={responsiveDrawer.responsive}
-          onToggle={()=>{setResponsive(!responsiveDrawer.responsive)}}
+          onToggle={() => { setResponsive(!responsiveDrawer.responsive) }}
         />
       },
       {
-        value:'/set_docked',
-        primaryText: responsiveDrawer.docked?"Disable docked":"Enable docked",
+        value: '/set_docked',
+        primaryText: responsiveDrawer.docked ? "Disable docked" : "Enable docked",
         rightToggle: <Toggle
           toggled={responsiveDrawer.docked}
           onToggle={toggleDrawerDock}
@@ -212,7 +212,7 @@ class App extends Component {
                 <div style={styles.drawer_header_container}>
                   <h1 style={styles.drawer_header}>Drawer</h1>
                   <RaisedButton
-                    label={responsiveDrawer.open?"Close drawer":"Open drawer"}
+                    label={responsiveDrawer.open ? "Close drawer" : "Open drawer"}
                     primary={true}
                     onClick={toggleDrawerOpen}
                   />
@@ -237,28 +237,28 @@ class App extends Component {
                   secondary={true}
                   icon={
                     <SvgIcon width={22} height={22} viewBox="0 0 1800 1800" >
-                      <path d={'M1664 896q0 251-146.5 451.5t-378.5 277.5q-27 5-39.5-7t-12.5-30v-211q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-121-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-86-13.5q-44 113-7 204-79 85-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-40 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 89t.5 54q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z'}/>
+                      <path d={'M1664 896q0 251-146.5 451.5t-378.5 277.5q-27 5-39.5-7t-12.5-30v-211q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-121-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-86-13.5q-44 113-7 204-79 85-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-40 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 89t.5 54q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z'} />
                     </SvgIcon>
                   }
                 />
               }
             />
-            <div style={{margin:'10px'}}>
+            <div style={{ margin: '10px' }}>
               <h1 style={styles.body_header}>Body</h1>
               <RaisedButton
-                label={responsiveDrawer.open?"Close drawer":"Open drawer"}
+                label={responsiveDrawer.open ? "Close drawer" : "Open drawer"}
                 primary={true}
                 onClick={toggleDrawerOpen}
               />
               <Toggle
-                label={responsiveDrawer.responsive?"Disable responsive":"Enable responsive"}
+                label={responsiveDrawer.responsive ? "Disable responsive" : "Enable responsive"}
                 labelPosition='right'
                 style={styles.responsive_toggler}
                 toggled={responsiveDrawer.responsive}
-                onToggle={()=>{setResponsive(!responsiveDrawer.responsive)}}
+                onToggle={() => { setResponsive(!responsiveDrawer.responsive) }}
               />
               <Toggle
-                label={responsiveDrawer.docked?"Disable docked":"Enable docked"}
+                label={responsiveDrawer.docked ? "Disable docked" : "Enable docked"}
                 labelPosition='right'
                 style={styles.responsive_toggler}
                 toggled={responsiveDrawer.docked}
@@ -266,7 +266,7 @@ class App extends Component {
               />
 
 
-              <div style={{marginTop: 15}}>
+              <div style={{ marginTop: 15 }}>
 
                 <MobileTearSheet>
                   <SelectableMenuList
@@ -320,7 +320,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const {  browser, responsiveDrawer } = state;
+  const { browser, responsiveDrawer } = state;
   return {
     browser,
     responsiveDrawer
@@ -342,7 +342,7 @@ const mapDispatchToProps = (dispatch) => {
     setDrawerOpen: (isOpen) => {
       dispatch(setDrawerOpen(isOpen));
     },
-    to: (path)=>{
+    to: (path) => {
       dispatch(push(path))
     },
   }
