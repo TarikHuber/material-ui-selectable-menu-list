@@ -41,6 +41,12 @@ function getItem (item, i) {
         {...item}
         key={i}
         value={item.value}
+        onMouseDown={(e) => {
+          if (e.button === 1) {
+            var win = window.open(`${item.value}`, '_blank')
+            win.focus()
+          }
+        }}
         nestedItems={getNestedItems(item, i)}
       />
     }
