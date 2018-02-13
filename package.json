@@ -1,6 +1,6 @@
 {
   "name": "material-ui-selectable-menu-list",
-  "version": "1.19.4",
+  "version": "1.19.5",
   "description": "Selectable List from Material-UI that can be filled with an array of items",
   "main": "lib/index.js",
   "module": "es/index.js",
